@@ -117,38 +117,74 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"main.js":[function(require,module,exports) {
-var html = document.querySelector("#demo");
-var style = document.querySelector("#style");
-var string = "\n/*\u5927\u5BB6\u597D\uFF0C\n\u4F17\u6240\u5468\u77E5\uFF0C\n\u90D1\u79C0\u6676\u662F\u6211\u8001\u5A46\n\u5566\u5566\u5566\u5566\u5566\n\n\u9996\u5148\n\u628A\u80CC\u666F\u8272\u7A0D\u5FAE\u52A0\u6DF1\u4E00\u4E9B*/\nbody{\n  background:#e3e3e3;\n}\n\n/*\n*\u7136\u540E\n*\u6211\u8981\u751F\u6210\u4E00\u4E2Adiv\n*/\n#div1{\n  border:1px solid black;\n  width:400px;\n  height:400px;\n}\n\n/*\n\u63A5\u4E0B\u6765\n\u6211\u8981\u628A\u8FD9\u4E2Adiv\u53D8\u6210\u4E00\u4E2A\u5706\n*/\n#div1{\n  border-radius:50%;\n  box-shadow:0 0 3px rgba(0,0,0,0.4);\n  border:none\n}\n\n/*\n* \u592A\u6781\u662F\u4E00\u9ED1\u4E00\u767D\u7684\n*/\n\n#div1{\n  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(0,0,0,1) 50%, rgba(0,0,0,1) 100%);\n}\n\n/*\n*\u753B\u51FA\u9ED1\u767D\u4E24\u6761\u9C7C\n*/\n\n#div1::before{\n  width:200px;\n  height:200px;\n  top:0;\n  left:50%;\n  transform:translateX(-50%);\n  background:#000;\n  border-radius:50%;\n  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 25%, rgba(0,0,0,1) 25%, rgba(0,0,0,1) 100%);\n}\n\n\n#div1::after{\n  width:200px;\n  height:200px;\n  bottom:0;\n  left:50%;\n  transform:translateX(-50%);\n  background:#ffffff;\n  border-radius:50%;\n  background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 25%, rgba(255,255,255,1) 25%, rgba(255,255,255,1) 100%);\n}\n";
-var string2 = "";
-console.log(string.length);
-var n = -1;
+})({"../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-var step = function step() {
-  setTimeout(function () {
-    console.log(n);
-    n += 1;
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
 
-    if (string[n] === "\n") {
-      string2 += "<br>";
-    } else if (string[n] === " ") {
-      string2 += "&nbsp";
-    } else {
-      string2 += string[n];
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
     }
 
-    html.innerHTML = string2;
-    style.innerHTML = string.substring(0, n);
+    cssTimeout = null;
+  }, 50);
+}
 
-    if (n < string.length - 1) {
-      step();
-    }
-  }, 5);
-};
-
-step();
-},{}],"../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+module.exports = reloadCSS;
+},{"./bundle-url":"../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/bundle-url.js"}],"../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -352,5 +388,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js","main.js"], null)
-//# sourceMappingURL=/main.1f19ae8e.js.map
+},{}]},{},["../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/index.js.map

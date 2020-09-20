@@ -1,34 +1,74 @@
-let demo = document.querySelector("#demo");
+let html = document.querySelector("#demo");
 
-// let n = 0;
-// demo.innerHTML = n;
-
-// setTimeout(() => {
-//   n += 1;
-//   demo.innerHTML = n;
-// }, 200);
-//settimeout只会执行一次
-
-//setInterval可以重复执行
-//但是老手不会用setInterval
-//会用递归的settimeout
-
-// setInterval(() => {
-//   n += 1;
-//   demo.innerHTML = n;
-// }, 5000);
+let style = document.querySelector("#style");
 
 let string = `
-大家好，
+/*大家好，
 众所周知，
 郑秀晶是我老婆
 啦啦啦啦啦
 
-添加样式
-body
-{
-    color:red
-}`;
+首先
+把背景色稍微加深一些*/
+body{
+  background:#e3e3e3;
+}
+
+/*
+*然后
+*我要生成一个div
+*/
+#div1{
+  border:1px solid black;
+  width:400px;
+  height:400px;
+}
+
+/*
+接下来
+我要把这个div变成一个圆
+*/
+#div1{
+  border-radius:50%;
+  box-shadow:0 0 3px rgba(0,0,0,0.4);
+  border:none
+}
+
+/*
+* 太极是一黑一白的
+*/
+
+#div1{
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(0,0,0,1) 50%, rgba(0,0,0,1) 100%);
+}
+
+/*
+*画出黑白两条鱼
+*/
+
+#div1::before{
+  width:200px;
+  height:200px;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  background:#000;
+  border-radius:50%;
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 25%, rgba(0,0,0,1) 25%, rgba(0,0,0,1) 100%);
+}
+
+
+#div1::after{
+  width:200px;
+  height:200px;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  background:#ffffff;
+  border-radius:50%;
+  background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 25%, rgba(255,255,255,1) 25%, rgba(255,255,255,1) 100%);
+}
+`;
 
 let string2 = "";
 console.log(string.length);
@@ -38,18 +78,23 @@ let n = -1;
 let step = () => {
   setTimeout(() => {
     console.log(n);
+
     n += 1;
+
     if (string[n] === "\n") {
       string2 += "<br>";
+    } else if (string[n] === " ") {
+      string2 += "&nbsp";
     } else {
       string2 += string[n];
     }
 
-    demo.innerHTML = string2;
+    html.innerHTML = string2;
+    style.innerHTML = string.substring(0, n);
     if (n < string.length - 1) {
       step();
     }
-  }, 100);
+  }, 5);
 };
 
 step();
