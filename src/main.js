@@ -95,7 +95,7 @@ let step = () => {
     if (n < string.length - 1) {
       step();
     }
-  }, 20);
+  }, 1);
 };
 
 step();
