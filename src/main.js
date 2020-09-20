@@ -91,10 +91,12 @@ let step = () => {
 
     html.innerHTML = string2;
     style.innerHTML = string.substring(0, n);
+
+    window.scrollTo(0, 999999);
     if (n < string.length - 1) {
       step();
     }
-  }, 5);
+  }, 50);
 };
 
 step();
