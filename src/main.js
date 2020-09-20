@@ -4,9 +4,7 @@ let style = document.querySelector("#style");
 
 let string = `
 /*大家好，
-众所周知，
-郑秀晶是我老婆
-啦啦啦啦啦
+今天来给大家画一个太极图
 
 首先
 把背景色稍微加深一些*/
@@ -20,8 +18,8 @@ body{
 */
 #div1{
   border:1px solid black;
-  width:400px;
-  height:400px;
+  width:200px;
+  height:200px;
 }
 
 /*
@@ -47,8 +45,8 @@ body{
 */
 
 #div1::before{
-  width:200px;
-  height:200px;
+  width:100px;
+  height:100px;
   top:0;
   left:50%;
   transform:translateX(-50%);
@@ -59,8 +57,8 @@ body{
 
 
 #div1::after{
-  width:200px;
-  height:200px;
+  width:100px;
+  height:100px;
   bottom:0;
   left:50%;
   transform:translateX(-50%);
@@ -93,10 +91,11 @@ let step = () => {
     style.innerHTML = string.substring(0, n);
 
     window.scrollTo(0, 999999);
+    demo.scrollTo(0, 999999);
     if (n < string.length - 1) {
       step();
     }
-  }, 50);
+  }, 20);
 };
 
 step();

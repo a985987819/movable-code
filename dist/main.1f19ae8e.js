@@ -120,7 +120,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"main.js":[function(require,module,exports) {
 var html = document.querySelector("#demo");
 var style = document.querySelector("#style");
-var string = "\n/*\u5927\u5BB6\u597D\uFF0C\n\u4F17\u6240\u5468\u77E5\uFF0C\n\u90D1\u79C0\u6676\u662F\u6211\u8001\u5A46\n\u5566\u5566\u5566\u5566\u5566\n\n\u9996\u5148\n\u628A\u80CC\u666F\u8272\u7A0D\u5FAE\u52A0\u6DF1\u4E00\u4E9B*/\nbody{\n  background:#e3e3e3;\n}\n\n/*\n*\u7136\u540E\n*\u6211\u8981\u751F\u6210\u4E00\u4E2Adiv\n*/\n#div1{\n  border:1px solid black;\n  width:400px;\n  height:400px;\n}\n\n/*\n\u63A5\u4E0B\u6765\n\u6211\u8981\u628A\u8FD9\u4E2Adiv\u53D8\u6210\u4E00\u4E2A\u5706\n*/\n#div1{\n  border-radius:50%;\n  box-shadow:0 0 3px rgba(0,0,0,0.4);\n  border:none\n}\n\n/*\n* \u592A\u6781\u662F\u4E00\u9ED1\u4E00\u767D\u7684\n*/\n\n#div1{\n  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(0,0,0,1) 50%, rgba(0,0,0,1) 100%);\n}\n\n/*\n*\u753B\u51FA\u9ED1\u767D\u4E24\u6761\u9C7C\n*/\n\n#div1::before{\n  width:200px;\n  height:200px;\n  top:0;\n  left:50%;\n  transform:translateX(-50%);\n  background:#000;\n  border-radius:50%;\n  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 25%, rgba(0,0,0,1) 25%, rgba(0,0,0,1) 100%);\n}\n\n\n#div1::after{\n  width:200px;\n  height:200px;\n  bottom:0;\n  left:50%;\n  transform:translateX(-50%);\n  background:#ffffff;\n  border-radius:50%;\n  background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 25%, rgba(255,255,255,1) 25%, rgba(255,255,255,1) 100%);\n}\n";
+var string = "\n/*\u5927\u5BB6\u597D\uFF0C\n\u4ECA\u5929\u6765\u7ED9\u5927\u5BB6\u753B\u4E00\u4E2A\u592A\u6781\u56FE\n\n\u9996\u5148\n\u628A\u80CC\u666F\u8272\u7A0D\u5FAE\u52A0\u6DF1\u4E00\u4E9B*/\nbody{\n  background:#e3e3e3;\n}\n\n/*\n*\u7136\u540E\n*\u6211\u8981\u751F\u6210\u4E00\u4E2Adiv\n*/\n#div1{\n  border:1px solid black;\n  width:200px;\n  height:200px;\n}\n\n/*\n\u63A5\u4E0B\u6765\n\u6211\u8981\u628A\u8FD9\u4E2Adiv\u53D8\u6210\u4E00\u4E2A\u5706\n*/\n#div1{\n  border-radius:50%;\n  box-shadow:0 0 3px rgba(0,0,0,0.4);\n  border:none\n}\n\n/*\n* \u592A\u6781\u662F\u4E00\u9ED1\u4E00\u767D\u7684\n*/\n\n#div1{\n  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(0,0,0,1) 50%, rgba(0,0,0,1) 100%);\n}\n\n/*\n*\u753B\u51FA\u9ED1\u767D\u4E24\u6761\u9C7C\n*/\n\n#div1::before{\n  width:100px;\n  height:100px;\n  top:0;\n  left:50%;\n  transform:translateX(-50%);\n  background:#000;\n  border-radius:50%;\n  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 25%, rgba(0,0,0,1) 25%, rgba(0,0,0,1) 100%);\n}\n\n\n#div1::after{\n  width:100px;\n  height:100px;\n  bottom:0;\n  left:50%;\n  transform:translateX(-50%);\n  background:#ffffff;\n  border-radius:50%;\n  background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 25%, rgba(255,255,255,1) 25%, rgba(255,255,255,1) 100%);\n}\n";
 var string2 = "";
 console.log(string.length);
 var n = -1;
@@ -141,11 +141,12 @@ var step = function step() {
     html.innerHTML = string2;
     style.innerHTML = string.substring(0, n);
     window.scrollTo(0, 999999);
+    demo.scrollTo(0, 999999);
 
     if (n < string.length - 1) {
       step();
     }
-  }, 50);
+  }, 20);
 };
 
 step();
@@ -177,7 +178,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56065" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58422" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
